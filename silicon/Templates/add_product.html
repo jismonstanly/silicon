@@ -1,0 +1,57 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add {{c.Category_name}}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<center>
+
+<form method="post" action="{% url 'add_product' c.id %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+    <h1>Add {{c.Category_name}}</h1>
+    <div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <hr>
+     <label><b>Name</b></label><br><br>
+     <input type="text" placeholder="Enter name" name="nam" required><br><br>
+     <label><b>Minimum quantity</b></label><br><br>
+     <input type="number" placeholder="Enter minimum quantity" name="min_q" required><br><br>
+     <label><b>Maximum quantity</b></label><br><br>
+     <input type="number" placeholder="Enter maximum quantity" name="max_q" required><br><br>
+     <label><b>Discount percentage</b></label><br><br>
+     <input type="number" placeholder="Enter discount in percentage" name="disc" required><br><br>
+     <label><b>Price</b></label><br><br>
+     <input type="number" placeholder="Enter price in Rs" name="price" required><br><br>
+     <label><b>Add {{c.Category_name}} picture</b></label><br><br>
+     <input type="file" size="10" placeholder="Attach new {{c.Category_name}}" name="photo1" required><br><br>
+      <label><b>Status</b></label><br><br>
+    <select name="actt">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+    </select>
+    <hr>
+
+    <button type="submit" class="registerbtn">Submit</button>&nbsp&nbsp&nbsp&nbsp
+    <button type="reset" class="registerbtn">Cancel</button>
+  </div>
+
+
+</form>
+</center>
+</body>
+
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</html>

@@ -1,0 +1,83 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quotation</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div align="center" style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<center>
+    <div class="container">
+    <h1>QUOTATION REQUEST</h1>
+    <hr>
+     <label><b>Font styles for bands</b></label><br><br>
+         {% for i,j in ght %}
+            <Label>{{i}}, Availability - {{j}}</Label><br><br>
+         {% endfor %}
+     <label><b>Price details of bands</b></label><br><br>
+        {% for bs, bst, pricd in bb_det %}
+            <label>Band size - {{bs}}; Band style - {{bst}}; Unit price - {{pricd}}</label><br><br>
+        {% endfor %}
+
+     <label><b>Cliparts for bands</b></label><br><br>
+         {% for i,j in cll %}
+            <label>{{i}}</label><br><br>
+            <img src="/media/{{j}}" alt="No image" height="50px" width="50px" name="imgg"><br><br>
+         {% endfor %}
+
+     <label><b>Delivery charge details</b></label><br><br>
+        {% for n in deli %}
+        {% if n.Delivery_fees != 0 %}
+            <label>Kilometer range {{n.Delivery_charge_min_km}} - {{n.Delivery_charge_max_km}}, Charge - {{n.Delivery_fees}}</label><br>
+        {% endif %}
+        {% endfor %}
+        <br>
+      <label><b>Shipping charge details</b></label><br><br>
+        {% for q in deli %}
+        {% if q.Shipping_cost != 0 %}
+            <label>For {{q.Shipping_days}} days, charge will be Rs.{{q.Shipping_cost}}. {{q.Shipping_description}}.</label><br>
+        {% endif %}
+        {% endfor %}
+        <br><br>
+      <label><b>Quotation discounts</b></label><br><br>
+        {% for q in jkj %}
+        <label><i>{{q.Category_name}}</i></label><br>
+            <label>Quantity range: {{q.Minimum_quantity}}-{{q.Maximum_quantity}}</label><br>
+            <label>Discount: {{q.Discount_percent}}%; Availability - {{q.Status}}</label><br>
+        {% endfor %}
+        <br><br>
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'view_all_products' %}'" name='mybtn2'>View all products</button>
+</div>
+        <br><br>
+<form method="post" action="{% url 'quott' %}">
+{% csrf_token %}
+        <label>Category selected</label><br><br>
+        <input type="text" name="catgo"><br><br>
+
+        <label>Description</label><br><br>
+        <textarea rows="4" cols="50" name="descript"></textarea><br><br>
+
+        <label>Quantity needed</label><br><br>
+        <input type="number" name="qty"><br><br> <br>
+
+    <button type="submit" class="registerbtn">Send quotation</button>&nbsp&nbsp&nbsp&nbsp
+    <button type="reset" class="registerbtn">Cancel</button>
+</form>
+
+</center>
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'customer_home' %}'" name='mybtn2'>Home</button>
+</div>
+</body>
+
+</html>

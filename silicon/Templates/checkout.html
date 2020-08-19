@@ -1,0 +1,73 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">ORDER DETAILS</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Order_id
+		</th>
+		<th>
+			Image
+		</th>
+		<th>
+			Product name
+		</th>
+        <th>
+			Price in Rs
+		</th>
+		<th>
+			Quantity
+		</th>
+	</tr>
+	{% for i,q,w,e,m in bm %}
+	<tr>
+        <td>
+			{{i}}
+		</td>
+		<td>
+			<img src="/media/{{q}}" alt="No image" height="100px" width="200px">
+		</td>
+		<td>
+			{{w}}
+		</td>
+        <td>
+			{{e}}
+		</td>
+		<td>
+			{{m}}
+		</td>
+		<td>
+			<button type="submit" onclick="location.href='{% url 'Remove_order' i m e %}'" name='del'>Remove</button>
+		</td>
+	</tr>
+	{% endfor %}
+</table><br><br>
+<div align="center">
+	<button type="submit" onclick="location.href='{% url 'customer_home' %}'" name='mybtn2'>Home</button><br><br>
+    <button type="submit" onclick="location.href='{% url 'ch_out' %}'" name='mybtn2'>Checkout</button>
+</div>
+</body>
+</html>

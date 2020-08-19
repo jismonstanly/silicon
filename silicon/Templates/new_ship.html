@@ -1,0 +1,49 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New shipping details</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<center>
+
+<form method="post" action="{% url 'new_ship' %}">
+    {% csrf_token %}
+    <div class="container">
+    <h1>New shipping details</h1>
+    <hr>
+     <label><b>Shipping days</b></label><br><br>
+    <input type="number" placeholder="Enter days" name="day" required><br><br>
+
+    <label><b>Description</b></label><br><br>
+    <textarea rows="4" cols="50" name="desc" required></textarea><br><br>
+
+    <label><b>Cost</b></label><br><br>
+    <input type="number" placeholder="Enter cost in Rs" name="cost" required><br><br>
+
+    <label><b>Status</b></label><br><br>
+    <select name="actt">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+    </select>
+
+    <hr>
+
+
+    <button type="submit" class="registerbtn">Submit</button>&nbsp&nbsp&nbsp&nbsp
+    <button type="reset" class="registerbtn">Cancel</button>
+  </div>
+
+
+</form>
+</center>
+</body>
+
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</html>

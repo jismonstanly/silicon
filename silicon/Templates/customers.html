@@ -1,0 +1,100 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>Customers</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">CUSTOMER PROFILE</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Id
+		</th>
+		<th>
+			Name
+		</th>
+		<th>
+			Email
+		</th>
+		<th>
+			Phone
+		</th>
+		<th>
+			State
+		</th>
+		<th>
+			City
+		</th>
+		<th>
+			Pincode
+		</th>
+		<th>
+			Address
+		</th>
+        <th>
+			Status
+		</th>
+	</tr>
+	{% for i in rt %}
+	<tr>
+        <td>
+			{{i.id}}
+		</td>
+		<td>
+			{{i.First_name }} {{i.Last_name }}
+		</td>
+		<td>
+			{{i.Email}}
+		</td>
+		<td>
+			{{i.Phone}}
+		</td>
+		<td>
+			{{i.State }}
+		</td>
+        <td>
+			{{i.City}}
+		</td>
+        <td>
+			{{i.Pincode}}
+		</td>
+        <td>
+			{{i.Address}}
+		</td>
+         <td>
+			{{i.Lock}}
+		</td>
+		<td>
+			<button type="submit" onclick="location.href='{% url 'block_cust' i.id %}'" name='del'>Block</button>
+		</td>
+        <td>
+			<button type="submit" onclick="location.href='{% url 'open_cust' i.id %}'" name='del'>Open</button>
+		</td>
+	</tr>
+	{% endfor %}
+</table><br><br>
+<div align="center">
+	<button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>

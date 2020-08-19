@@ -1,0 +1,40 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit band price</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div align="center">
+<form method="post" action="{% url 'edit_band_price' b.id %}">
+    {% csrf_token %}
+    <h3><b>EDIT BAND PRICE</b></h3>
+
+    <label>Band size - {{b.Size_in_inch}}</label><br><br>
+    <input type="hidden" name="bs" value="{{b.Size_in_inch}}">
+
+    <label>Band style - {{b.Style}}</label><br><br>
+    <input type="hidden" name="bst" value="{{b.Style}}">
+
+    <label>Maximum quantity</label><br><br>
+    <input type="number" value="{{b.Maximum_quantity}}" name="Maximum_quantity"><br><br>
+
+    <label>Minimum quantity</label><br><br>
+    <input type="number" value="{{b.Minimum_quantity}}" name="Minimum_quantity"><br><br>
+
+    <label>Price</label><br><br>
+    <input type="number" value="{{b.Unit_price}}" name="price"><br><br>
+
+    <label>Discount percentage</label><br><br>
+    <input type="number" value="{{b.Discount_percentage}}" name="disc"><br><br>
+
+    <input type="submit" class="registerbtn" value="submit">
+
+</form>
+</div><br><br>
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'view_price' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>

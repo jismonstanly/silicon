@@ -1,0 +1,78 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>View shipping details</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">SHIPPING DETAILS</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Shipping__id
+		</th>
+		<th>
+			Shipping days
+		</th>
+		<th>
+			Description
+		</th>
+        <th>
+			Cost
+		</th>
+        <th>
+			Status
+		</th>
+	</tr>
+	{% for i in b %}
+	{% if i.Shipping_cost != 0 %}
+	<tr>
+        <td>
+			{{i.id}}
+		</td>
+		<td>
+			{{i.Shipping_days}}
+		</td>
+		<td>
+			{{i.Shipping_description}}
+		</td>
+        <td>
+			{{i.Shipping_cost}}
+		</td>
+        <td>
+			{{i.Status}}
+		</td>
+		<td>
+			<button type="submit" onclick="location.href='{% url 'edit_ship' i.id %}'" name='t_h'>Edit</button>
+		</td>
+		<td>
+			<button type="submit" onclick="location.href='{% url 'delete_ship' i.id %}'" name='del'>Delete</button>
+		</td>
+	</tr>
+	{% endif %}
+	{% endfor %}
+</table><br><br>
+<div align="center">
+	<button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>

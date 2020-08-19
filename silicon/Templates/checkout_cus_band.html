@@ -1,0 +1,62 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Address</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<center>
+<form  action="{% url 'checkout_cus_band' %}" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <label>Total amount: Rs. {{m}}</label><br><br>
+        <label>Pay amount</label><br><br>
+        <input type="number" name="amt" required><br><br>
+    <h1>Bill to</h1>
+    <label><b>First name</b></label><br><br>
+    <input type="text" placeholder="Enter firstname" name="first_name" required><br><br>
+
+        <label><b>Last name</b></label><br><br>
+    <input type="text" placeholder="Enter lastname" name="last_name" required><br><br>
+
+    <label><b>Email</b></label><br><br>
+    <input type="text" placeholder="Enter Email" name="email" required><br><br>
+
+    <label><b>Phone</b></label><br><br>
+    <input type="number" placeholder="Enter phone number" name="phone" required><br><br>
+
+    <label><b>State</b></label><br><br>
+    <input type="text" placeholder="Enter state" name="state" required><br><br>
+
+    <label><b>City</b></label><br><br>
+    <input type="text" placeholder="Enter city name" name="city" required><br><br>
+
+    <label><b>Pincode</b></label><br><br>
+    <input type="number" placeholder="Enter pincode" name="pincode" required><br><br>
+
+    <label><b>Address</b></label><br><br>
+    <textarea rows="4" cols="50" name="address" required></textarea><br><br>
+
+    <button type="submit" class="registerbtn">Place order</button>&nbsp&nbsp&nbsp&nbsp
+    <button type="reset" class="registerbtn">Cancel</button>
+  </div>
+
+
+</form>
+</center>
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'view_cart' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit product</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div align="center">
+<form method="post" action="{% url 'edit_product' b.id %}">
+    {% csrf_token %}
+    <h3><b>EDIT {{zz}}</b></h3>
+    <label>Product name</label><br><br>
+    <input type="text" value="{{b.Product_name}}" name="pro_n"><br><br>
+    <label>Minimum quantity</label><br><br>
+    <input type="text" value="{{b.Minimum_quantity}}" name="min_q"><br><br>
+    <label>Maximum quantity</label><br><br>
+    <input type="text" value="{{b.Maximum_quantity}}" name="max_q"><br><br>
+    <label>Discount percentage</label><br><br>
+    <input type="text" value="{{b.Discount_percentage}}" name="disc"><br><br>
+    <label>Price</label><br><br>
+    <input type="number" value="{{b.Unit_price}}" name="pro_p"><br><br>
+
+    <input type="submit" value="submit">&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="reset" value="cancel">
+
+</form>
+</div><br><br>
+<div align="center">
+	<button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Home</button>
+</div>
+</body>
+</html>

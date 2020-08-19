@@ -1,0 +1,46 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New clipart</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<center>
+
+<form method="post" action="{% url 'new_clipart' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+    <h1>Clipart</h1>
+    <hr>
+     <label><b>New clipart</b></label><br><br>
+    <input type="text" placeholder="Enter new clipart" name="clippart" required><br><br>
+
+    <label><b>Image</b></label><br><br>
+    <input type="file" size="10" placeholder="Attach new clipart" name="photo" required><br><br>
+
+    <label><b>Status</b></label><br><br>
+    <select name="actt">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+    </select>
+
+    <hr>
+
+
+    <button type="submit" class="registerbtn">Submit</button>&nbsp&nbsp&nbsp&nbsp
+    <button type="reset" class="registerbtn">Cancel</button>
+  </div>
+
+
+</form>
+</center>
+</body>
+
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</html>

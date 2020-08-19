@@ -1,0 +1,74 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>Delete FAQ</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">DELETE FAQS</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Id
+		</th>
+		<th>
+			Customer name
+		</th>
+		<th>
+			Customer email
+		</th>
+		<th>
+			Question
+		</th>
+        <th>
+			Answer
+		</th>
+	</tr>
+	{% for i in v %}
+	<tr>
+        <td>
+			{{i.id}}
+		</td>
+		<td>
+			{{i.Customer_name}}
+		</td>
+        <td>
+			{{i.Customer_email}}
+		</td>
+        <td>
+			{{i.Question}}
+		</td>
+        <td>
+			{{i.Answer}}
+		</td>
+        <td>
+			<button type="submit" onclick="location.href='{% url 'delete_faq' i.id %}'" name='mybtn2'>Delete</button>
+		</td>
+	</tr>
+	{% endfor %}
+</table><br><br>
+
+<div align="center">
+	<button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Home</button>
+</div>
+
+</body>
+</html>

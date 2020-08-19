@@ -1,0 +1,48 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>Faqs</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">FAQ</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<div align="center">
+<form method="post" action="{% url 'faq' %}">
+{% csrf_token %}
+    {% for i in se %}
+    <label><b>Question</b></label><br><br>
+    <label>{{i.Question}}</label><br><br>
+    <label><b>Answer</b></label><br><br>
+    <label>{{i.Answer}}</label><br><br>
+    {% endfor %}
+<label>Query?</label><br><br>
+<textarea name="text_feed" rows="4" cols="50"></textarea> <br><br>
+<input type="submit" name="submit" class="registerbtn" value="Submit">&nbsp&nbsp&nbsp&nbsp&nbsp
+<input type="reset" name="resett" class="registerbtn" value="Cancel">
+
+</form>
+</div>
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'customer_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>

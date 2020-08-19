@@ -1,0 +1,249 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+
+		h3
+		{
+		text-align:center;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>Price-chart</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h2 align="center">PRICE-CHART</h2>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+    <h3>Customized bands price chart</h3>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Id
+		</th>
+		<th>
+			Band size
+		</th>
+		<th>
+			Band style
+		</th>
+		<th>
+			Minimum quantity
+		</th>
+        <th>
+			Maximum quantity
+		</th>
+        <th>
+			Discount in percentage
+		</th>
+        <th>
+			Unit price
+		</th>
+	</tr>
+	{% for i in band_pr %}
+	{% if i.Unit_price != 0 %}
+	<tr>
+        <td>
+			{{i.id}}
+		</td>
+		<td>
+			{{i.Size_in_inch}}
+		</td>
+        <td>
+			{{i.Style}}
+		</td>
+        <td>
+			{{i.Minimum_quantity}}
+		</td>
+        <td>
+			{{i.Maximum_quantity}}
+		</td>
+        <td>
+			{{i.Discount_percentage}}
+		</td>
+        <td>
+			{{i.Unit_price}}
+		</td>
+	</tr>
+	{% endif %}
+	{% endfor %}
+</table><br><br>
+
+
+
+
+ <h3>Category-products unit price chart</h3>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Id
+		</th>
+		<th>
+			Category name
+		</th>
+		<th>
+			Product name
+		</th>
+		<th>
+			Price
+		</th>
+	</tr>
+	{% for i in Categories %}
+	{% if i.Unit_price != 0 %}
+	<tr>
+        <td>
+			{{i.id}}
+		</td>
+		<td>
+			{{i.Category_name}}
+		</td>
+        <td>
+			{{i.Product_name}}
+		</td>
+        <td>
+			{{i.Unit_price}}
+		</td>
+	</tr>
+	{% endif %}
+	{% endfor %}
+</table><br><br>
+
+
+
+ <h3>Quotation discounts</h3>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Id
+		</th>
+		<th>
+			Category name
+		</th>
+		<th>
+			Minimum quantity
+		</th>
+		<th>
+			Maximum quantity
+		</th>
+        <th>
+			Discount in percentage
+		</th>
+	</tr>
+	{% for i in quo_pr %}
+	<tr>
+        <td>
+			{{i.id}}
+		</td>
+		<td>
+			{{i.Category_name}}
+		</td>
+        <td>
+			{{i.Minimum_quantity}}
+		</td>
+        <td>
+			{{i.Maximum_quantity}}
+		</td>
+         <td>
+			{{i.Discount_percent}}
+		</td>
+	</tr>
+	{% endfor %}
+</table><br><br>
+
+
+
+<h3>Delivery charges</h3>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Id
+		</th>
+		<th>
+			Minimum kilometer
+		</th>
+		<th>
+			Maximum kilometer
+		</th>
+		<th>
+			Fee
+		</th>
+	</tr>
+	{% for i in Del_ch %}
+	{% if i.Delivery_fees != 0 %}
+	<tr>
+        <td>
+			{{i.id}}
+		</td>
+		<td>
+			{{i.Delivery_charge_min_km}}
+		</td>
+        <td>
+			{{i.Delivery_charge_max_km}}
+		</td>
+        <td>
+			{{i.Delivery_fees}}
+		</td>
+	</tr>
+	{% endif %}
+	{% endfor %}
+</table><br><br>
+
+
+
+
+<h3>Shipping charges</h3>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Id
+		</th>
+		<th>
+			Shipping days
+		</th>
+		<th>
+			Description
+		</th>
+		<th>
+			Fee
+		</th>
+	</tr>
+	{% for i in ship_cost %}
+	{% if i.Shipping_cost != 0 %}
+	<tr>
+        <td>
+			{{i.id}}
+		</td>
+		<td>
+			{{i.Shipping_days}}
+		</td>
+        <td>
+			{{i.Shipping_description}}
+		</td>
+        <td>
+			{{i.Shipping_cost}}
+		</td>
+	</tr>
+	{% endif %}
+	{% endfor %}
+</table><br><br>
+
+<div align="center">
+	<button type="submit" onclick="location.href='{% url 'customer_home' %}'" name='mybtn2'>Home</button>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>Delete quotation requests</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">DELETE QUOTATION REQUESTS</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Quotation_id
+		</th>
+		<th>
+			Customer name
+		</th>
+        <th>
+			Customer email
+		</th>
+        <th>
+			Category name
+		</th>
+        <th>
+			Description
+		</th>
+        <th>
+			Quantity_selected
+		</th>
+        <th>
+			Quotation_date
+		</th>
+        <th>
+			Status
+		</th>
+	</tr>
+    {% for s in wr %}
+	<tr>
+        <td>
+			{{s.id}}
+		</td>
+		<td>
+			{{s.Customer_name}}
+		</td>
+        <td>
+			{{s.Customer_email}}
+		</td>
+        <td>
+			{{s.Category_name}}
+		</td>
+        <td>
+			{{s.Description}}
+		</td>
+        <td>
+			{{s.Quantity_selected}}
+		</td>
+        <td>
+			{{s.Quotation_date}}
+		</td>
+        <td>
+			{{s.Status}}
+		</td>
+        <td>
+            <button type="submit" onclick="location.href='{% url 'del_qtt' s.id %}'" name='mybtn2'>Delete</button><br><br>
+        </td>
+	</tr>
+    {% endfor %}
+</table><br><br>
+<div align="center">
+	<button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Home</button>
+</div>
+
+</body>
+</html>

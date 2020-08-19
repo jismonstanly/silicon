@@ -1,0 +1,49 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>View clipart</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">CLIPART DETAILS</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<div align="center">
+<table>
+	{% for i,j,k in b %}
+	<tr>
+        <td>
+			<img src="/media/{{k}}" alt="No image" height="200px" width="200px">
+		</td>
+		<td>
+			{{j}}
+		</td>
+		<td>
+			<button type="submit" onclick="location.href='{% url 'delete_clipart' i %}'" name='del'>Delete</button>
+		</td>
+	</tr>
+	{% endfor %}
+</table><br><br>
+</div>
+<div align="center">
+	<button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Home</button>
+</div>
+
+</body>
+</html>

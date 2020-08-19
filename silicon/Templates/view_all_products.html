@@ -1,0 +1,43 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>View all products</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">CATEGORY</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<form action="{% url 'quott1' %}" method="post">
+{% csrf_token %}
+<div align="center">
+    <label><b>Select category</b></label><br><br>
+     <select name="catg">
+         {% for i,j,k in rr %}
+            <option value="{{j}}">{{j}}, Availability - {{k}}</option>
+         {% endfor %}
+     </select><br><br>
+    <input type="submit" value="Submit">
+</div>
+</form><br><br>
+<div align="center">
+	<button type="submit" onclick="location.href='{% url 'quott' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>

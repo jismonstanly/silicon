@@ -1,0 +1,67 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>View category</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">CATEGORY DETAILS</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Category_id
+		</th>
+		<th>
+			Category name
+		</th>
+		<th>
+			Status
+		</th>
+	</tr>
+	{% for q,w,e in b %}
+	<tr>
+        <td>
+			{{q}}
+		</td>
+		<td>
+			{{w}}
+		</td>
+		<td>
+			{{e}}
+		</td>
+		<td>
+			<button type="submit" onclick="location.href='{% url 'edit_category' q %}'" name='t_h'>Edit</button>
+		</td>
+		<td>
+			<button type="submit" onclick="location.href='{% url 'delete_category' q %}'" name='del'>Delete</button>
+		</td>
+	</tr>
+	{% endfor %}
+</table><br><br>
+<div align="center">
+
+<label>{% for a in g %}hello{% endfor %}</label>
+
+	<button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>

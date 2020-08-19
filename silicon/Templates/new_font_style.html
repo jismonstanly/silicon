@@ -1,0 +1,50 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Font style</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<center>
+
+<form method="post" action="{% url 'nfs' %}">
+    {% csrf_token %}
+    <div class="container">
+    <h1>Font style</h1>
+    <div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <hr>
+     <label><b>New font style</b></label><br><br>
+    <input type="text" placeholder="Enter new font name" name="font" required><br><br>
+
+        <label><b>Status</b></label><br><br>
+    <select name="actt">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+    </select>
+
+    <hr>
+
+
+    <button type="submit" class="registerbtn">Submit</button>&nbsp&nbsp&nbsp&nbsp
+    <button type="reset" class="registerbtn">Cancel</button>
+  </div>
+
+
+</form>
+</center>
+</body>
+
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</html>

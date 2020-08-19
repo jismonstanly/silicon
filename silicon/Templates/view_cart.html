@@ -1,0 +1,155 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">MY CART</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Cart_id
+		</th>
+		<th>
+			Font style
+		</th>
+		<th>
+			Band size
+		</th>
+		<th>
+			Band style
+		</th>
+		<th>
+			Clipart name
+		</th>
+		<th>
+			Clipart image
+		</th>
+		<th>
+			Front message
+		</th>
+		<th>
+			Back message
+		</th>
+		<th>
+			Color
+		</th>
+		<th>
+			Quantity ordered
+		</th>
+		<th>
+			Unit price
+		</th>
+		<th>
+			Total amount
+		</th>
+	</tr>
+	{% for i in b %}
+
+	{% for k in g %}
+	{% if i.Clippart_name == k.Clipart_name %}
+	<script>
+		function myFunction(gy)
+		{
+  			document.getElementById("myImg").src = "/media/"+gy;
+		}
+	</script>
+	{% endif %}
+	{% endfor %}
+	<tr>
+        <td>
+			{{i.id}}
+		</td>
+		<td>
+			{{i.Fon_style}}
+		</td>
+		<td>
+			{{i.Ban_size}}
+		</td>
+		<td>
+			{{i.Ban_style}}
+		</td>
+		<td>
+			{{i.Clippart_name}}
+		</td>
+		<td>
+			{% for k in g %}
+			{% if i.Clippart_name == k.Clipart_name %}
+			<img src="/media/{{k.Clipart_image}}" alt="No image" id="gh" height="100px" width="100px" name="imgs">
+			{% endif %}
+			{% endfor %}
+		</td>
+		<td>
+			{{i.Front_message}}
+		</td>
+		<td>
+			{{i.Back_message}}
+		</td>
+		<td>
+			{{i.Color}}
+		</td>
+		<td>
+			{{i.QQuantity}}
+		</td>
+		<td>
+			{{i.Pricce}}
+		</td>
+		<td>
+			{{i.Total_amount}}
+		</td>
+		<td>
+			{% for k in g %}
+			{% if i.Clippart_name == k.Clipart_name %}
+			<button type="button" onclick="hd('{{i.Color}}','{{gt}} {{i.Fon_style}}','{{i.Front_message}}','{{i.Back_message}}',document.getElementById('gh').src),myFunction('{{k.Clipart_image}}')">Proof image</button>
+			{% endif %}
+			{% endfor %}
+		</td>
+		<td>
+			<button type="submit" onclick="location.href='{% url 'delete_cart' i.id %}'" name='del'>Remove</button>
+		</td>
+	</tr>
+	{% endfor %}
+</table><br><br>
+<div align="center">
+	<button type="submit" onclick="location.href='{% url 'checkout_cus_band' %}'" name='mybtn2'>Checkout</button>&nbsp&nbsp&nbsp&nbsp
+	<button type="submit" onclick="location.href='{% url 'ord_cus_band' %}'" name='mybtn2'>Back</button>
+</div><br><br>
+<div align="center">
+	<canvas id="drawing"></canvas><img id="myImg" src="" width="115" height="148">
+</div>
+<script type="text/javascript">
+	function hd(colot,fon_st,txt,txtt)
+	{
+	var c = document.getElementById("drawing");
+	c.style["width"] = "1000px";
+	c.style["height"] = "150px";
+	var con = c.getContext("2d");
+	con.fillStyle = colot;
+	con.fillRect(0,0,30,170);
+	con.font = fon_st;
+	con.fillText(txt,40,90);
+	con.fillRect(95,0,145,150);
+	con.fillText(txtt,250,90);
+	}
+</script>
+</body>
+</html>

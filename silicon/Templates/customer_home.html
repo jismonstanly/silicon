@@ -1,0 +1,59 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'msg.css' %}">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'studenthome.css' %}">
+
+</head>
+<body class=" pic" background="{% static 'home.jpg' %}">
+<div class="navbar">
+    <!--<button class="dropbtn">update profile<i class="fa fa-caret-down"></i></button>-->
+       <div class="dropdown">
+            <button class="dropbtn">Categories<i class="fa fa-caret-down"></i></button>
+            <div class="dropdown-content">
+                <a href="{% url 'ord_cus_band' %}">Order Customized bands</a>
+                {% for t,g in d %}
+              <a href="{% url 'view_prdct_cus' t g %}">{{g}}</a>
+                {% endfor %}
+            </div>
+      </div>
+     <div class="dropdown">
+            <button class="dropbtn">My orders<i class="fa fa-caret-down"></i></button>
+            <div class="dropdown-content">
+                <a href="{% url 'view_cus_band_orders' %}">Customized bands</a>
+                <a href="{% url 'view_quotations_cust' %}">Quotations</a>
+                {% for t,g in k %}
+              <a href="{% url 'view_pre_cus_ord' g %}">{{g}}</a>
+                {% endfor %}
+            </div>
+      </div>
+       <a href="{% url 'my_prof' %}">My profile</a>
+       <a href="{% url 'quott' %}">Quotation</a>
+       <a href="{% url 'feedback' %}">Feedback</a>
+       <a href="{% url 'faq' %}">FAQ</a>
+       <a href="{% url 'price_chart' %}">Price chart</a>
+       <a href="{% url 'logout' %}">Logout</a>
+        <div class="dropdown-content">
+            <!--<a href="#">teacher</a>
+            <a href="#">Student</a>-->
+        </div>
+  </div>
+
+
+    <div>
+    <h1>CUSTOMER HOME</h1>
+</div>
+<div align="center" style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+
+</body>
+</html>

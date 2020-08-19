@@ -1,0 +1,168 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>Delete band-orders</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">DELETE ORDERS OF CUSTOMIZED BANDS</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+{% csrf_token %}
+<table  style="width:100%">
+	<tr>
+		<th>
+			Order_id
+		</th>
+		<th>
+			Name
+		</th>
+        <th>
+			Email
+		</th>
+        <th>
+			Phone
+		</th>
+        <th>
+			State
+		</th>
+        <th>
+			City
+		</th>
+        <th>
+			Pincode
+		</th>
+        <th>
+			Address
+		</th>
+        <th>
+			Font
+		</th>
+		<th>
+			Front message
+		</th>
+		<th>
+			Back message
+		</th>
+		<th>
+			Color
+		</th>
+        <th>
+			Band size
+		</th>
+        <th>
+			Clipart name
+		</th>
+        <th>
+			Clipart image
+		</th>
+        <th>
+			Quantity
+		</th>
+        <th>
+			Price
+		</th>
+        <th>
+			Total_amount
+		</th>
+        <th>
+			Order_date
+		</th>
+        <th>
+			Order_status
+		</th>
+	</tr>
+	{% for i in prr %}
+	<tr>
+        <td>
+			{{i.id}}
+		</td>
+		<td>
+			{{i.First_name}} {{i.Last_name}}
+		</td>
+        <td>
+			{{i.Email}}
+		</td>
+        <td>
+			{{i.Phone}}
+		</td>
+        <td>
+			{{i.State}}
+		</td>
+        <td>
+			{{i.City}}
+		</td>
+        <td>
+			{{i.Pincode}}
+		</td>
+        <td>
+			{{i.Address}}
+		</td>
+        <td>
+			{{i.Fonts_style}}
+		</td>
+        <td>
+			{{i.Front_message}}
+		</td>
+        <td>
+			{{i.Back_message}}
+		</td>
+        <td>
+			{{i.Color}}
+		</td>
+        <td>
+			{{i.Bandd_size}}
+		</td>
+		<td>
+			{{i.Clipartt_name}}
+		</td>
+        <td>
+          {% for d in mm %}
+          {% if d.Clipart_name == i.Clipartt_name %}
+            <img src="/media/{{d.Clipart_image}}" alt="No image" height="50px" width="50px" name="imgg"><br><br>
+         {% endif %}
+         {% endfor %}
+		</td>
+        <td>
+			{{i.Quantitty}}
+		</td>
+        <td>
+			{{i.Pricee}}
+		</td>
+        <td>
+			{{i.Totall_amount}}
+		</td>
+        <td>
+			{{i.Order_date}}
+		</td>
+		<td>
+			{{i.Order_status}}
+		</td>
+        <td>
+            <button type="submit" onclick="location.href='{% url 'delete_cust_band_orders' i.id %}'" name='mybtn2'>Delete</button>
+        </td>
+	</tr>
+	{% endfor %}
+</table><br><br>
+<div align="right">
+	<button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Home</button>
+</div>
+
+</body>
+</html>

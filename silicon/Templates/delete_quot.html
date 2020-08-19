@@ -1,0 +1,75 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>Delete quotation requests</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">DELETE QUOTATION REQUESTS</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Quotation_id
+		</th>
+		<th>
+			Category name
+		</th>
+        <th>
+			Minimum quantity
+		</th>
+        <th>
+			Maximum quantity
+		</th>
+        <th>
+			Discount percent
+		</th>
+        <th>
+			Status
+		</th>
+	</tr>
+	<tr>
+        <td>
+			{{m.id}}
+		</td>
+		<td>
+			{{m.Category_name}}
+		</td>
+        <td>
+			{{m.Minimum_quantity}}
+		</td>
+        <td>
+			{{m.Maximum_quantity}}
+		</td>
+        <td>
+			{{m.Discount_percent}}
+		</td>
+        <td>
+			{{m.Status}}
+		</td>
+	</tr>
+</table><br><br>
+<div align="center">
+    <button type="submit" onclick="location.href='{% url 'delete_quotm' m.id %}'" name='mybtn2'>Delete</button><br><br>
+	<button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Home</button>
+</div>
+
+</body>
+</html>

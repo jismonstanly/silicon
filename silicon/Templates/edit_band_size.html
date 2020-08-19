@@ -1,0 +1,29 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit band size</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div align="center">
+<form method="post" action="{% url 'edit_band_size' b.id %}">
+    {% csrf_token %}
+    <h3><b>EDIT BAND SIZE</b></h3>
+    <label>Size</label><br><br>
+    <input type="text" value="{{b.Size_in_inch}}" name="bandd_size"><br><br>
+    <label><b>Status</b></label>
+    <select name="actt">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+    </select><br><br>
+
+    <input type="submit" class="registerbtn" value="submit">
+
+</form>
+</div><br><br>
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'view_band_size' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>

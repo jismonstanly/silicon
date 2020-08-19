@@ -1,0 +1,56 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My profile</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<center>
+<form method="post" action="{% url 'my_prof' %}">
+    {% csrf_token %}
+    <div class="container">
+    <h1>MY PROFILE</h1>
+    <hr>
+     <label><b>First name</b></label><br><br>
+    <input type="text"  name="first_name" value="{{rt.First_name}}" required><br><br>
+
+    <label><b>Last name</b></label><br><br>
+    <input type="text" name="last_name" value="{{rt.Last_name}}" required><br><br>
+
+    <label><b>Email</b></label><br><br>
+    <input type="text" name="email" value="{{rt.Email}}" required><br><br>
+
+    <label><b>Phone</b></label><br><br>
+    <input type="number" name="phone" value="{{rt.Phone}}" required><br><br>
+
+    <label><b>State</b></label><br><br>
+    <input type="text"  name="state" value="{{rt.State}}" required><br><br>
+
+    <label><b>City</b></label><br><br>
+    <input type="text" name="city" value="{{rt.City}}" required><br><br>
+
+    <label><b>Pincode</b></label><br><br>
+    <input type="number" name="pincode" value="{{rt.Pincode}}" required><br><br>
+
+    <label><b>Address</b></label><br><br>
+    <textarea rows="4" cols="50" name="address" required>{{rt.Address}}</textarea><br><br>
+
+    <label><b>Password</b></label><br><br>
+    <input type="text"  name="psw" value="{{rt.Password}}" required><br><br>
+    <input type="hidden" name="lok" value="{{rt.Lock}}">
+    <hr>
+
+    <button type="submit" class="registerbtn">Update</button>
+  </div>
+
+</form>
+</center>
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'customer_home' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+
+</html>

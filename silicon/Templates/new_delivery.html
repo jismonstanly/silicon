@@ -1,0 +1,56 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New delivery details</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<center>
+
+<form method="post" action="{% url 'new_delivery' %}">
+    {% csrf_token %}
+    <div class="container">
+    <h1>New delivery details</h1>
+    <div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <hr>
+     <label><b>Minimum kilometer</b></label><br><br>
+    <input type="number" placeholder="Enter minimum kilometer" name="Minimum_kilometer" size="25" required><br><br>
+
+    <label><b>Maximum kilometer</b></label><br><br>
+    <input type="number" placeholder="Enter maximum kilometer" name="Maximum_kilometer" size="25" required><br><br>
+
+    <label><b>Cost</b></label><br><br>
+    <input type="number" placeholder="Enter cost in Rs" name="price" size="25" required><br><br>
+
+    <label><b>Status</b></label>
+    <select name="actt">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+    </select>
+
+    <hr>
+
+
+    <button type="submit" class="registerbtn">Submit</button>&nbsp&nbsp&nbsp&nbsp
+    <button type="reset" class="registerbtn">Cancel</button>
+  </div>
+
+
+</form>
+</center>
+</body>
+
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</html>

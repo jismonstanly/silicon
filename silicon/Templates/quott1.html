@@ -1,0 +1,33 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>View products</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<center>
+ {% for g in pro %}
+ {% if g.Unit_price != 0 %}
+    <img src="/media/{{g.Product_image}}" alt="No image" height="100px" width="200px"><br><br>
+    <label>{{g.Product_name}}</label><br><br>
+    <label>Price - Rs.{{g.Unit_price}}</label><br><br>
+    <hr>
+{% endif %}
+{% endfor %}
+<div align="center">
+	<button type="submit" onclick="location.href='{% url 'quott' %}'" name='mybtn2'>Back</button>
+</div>
+</center>
+</body>
+</html>

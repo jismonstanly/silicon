@@ -1,0 +1,78 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>View quotations</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">Quotations</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+
+<table  style="width:100%">
+	<tr>
+		<th>
+			Order_id
+		</th>
+		<th>
+			Category name
+		</th>
+		<th>
+			Description
+		</th>
+		<th>
+			Quantity ordered
+		</th>
+        <th>
+			Quotation date
+		</th>
+        <th>
+			Status
+		</th>
+	</tr>
+	{% for i in b %}
+	<tr>
+        <td>
+			{{i.id}}
+		</td>
+		<td>
+			{{i.Category_name}}
+		</td>
+        <td>
+			{{i.Description}}
+		</td>
+        <td>
+			{{i.Quantity_selected}}
+		</td>
+        <td>
+			{{i.Quotation_date}}
+		</td>
+        <td>
+			{{i.Status}}
+		</td>
+	</tr>
+	{% endfor %}
+</table><br><br>
+
+<div align="center">
+	<button type="submit" onclick="location.href='{% url 'customer_home' %}'" name='mybtn2'>Home</button>
+</div>
+
+</body>
+</html>

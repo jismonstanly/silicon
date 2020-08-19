@@ -1,0 +1,97 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customized bands</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div align="center" style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<center>
+<form method="post" action="{% url 'ord_cus_band' %}">
+    {% csrf_token %}
+    <div class="container">
+    <h1>ORDER CUSTOMIZED BANDS</h1>
+    <hr>
+     <label><b>Select font style</b></label><br><br>
+     <select name="f_ss">
+         {% for i,j in ght %}
+            <option value="{{i}}">{{i}}, Availability - {{j}}</option>
+         {% endfor %}
+     </select><br><br>
+     <label><b>Select band size</b></label><br><br>
+     <select name="b_ss">
+         {% for i,j in ght1 %}
+            <option value="{{i}}">{{i}}, Availability - {{j}}</option>
+         {% endfor %}
+     </select><br><br>
+     <label><b>Select band style</b></label><br><br>
+     <select name="b_stt">
+         {% for i,j in ght2 %}
+            <option value="{{i}}">{{i}}, Availability - {{j}}</option>
+         {% endfor %}
+     </select><br><br>
+     <label><b>Select clipart</b></label><br><br>
+     <select name="clipp">
+         {% for m in clip %}
+            <option value="{{m}}">{{m}}</option>
+         {% endfor %}
+     </select><br><br>
+        <label><b>Clipart images</b></label><br><br>
+         {% for i,j in cll %}
+            <label>{{i}}</label><br><br>
+            <img src="/media/{{j}}" alt="No image" height="50px" width="50px" name="imgg"><br><br>
+         {% endfor %}
+
+     <label><b>Quantity needed</b></label><br><br>
+     <input type="number" placeholder="Enter number of units" name="quan" required><br><br>
+
+     <label><b>Front message</b></label><br><br>
+     <input type="text" name="f_mes" required><br><br>
+
+     <label><b>Back message</b></label><br><br>
+     <input type="text" name="b_mes" required><br><br>
+
+     <label for="colorr"><b>Select color</b></label><br><br>
+     <input type="color" id="colorr" name="collr" required><br><br>
+
+      <label><b>Price details</b></label><br><br>
+        {% for bs, bst, mq, maq, dp, pricd in bb_det %}
+            <label>Band size - {{bs}}<br> Band style - {{bst}}<br> Discount for range ({{mq}}-{{maq}}) is {{dp}}%<br>Unit price - {{pricd}}</label><br><br>
+        {% endfor %}
+     <label><b>Delivery charge details</b></label><br><br>
+        {% for n in deli %}
+        {% if n.Delivery_fees != 0 %}
+            <label>Kilometer range {{n.Delivery_charge_min_km}} - {{n.Delivery_charge_max_km}}, Charge - {{n.Delivery_fees}}</label><br>
+        {% endif %}
+        {% endfor %}
+        <br>
+      <label><b>Shipping charge details</b></label><br><br>
+        {% for q in deli %}
+        {% if q.Shipping_cost != 0 %}
+            <label>For {{q.Shipping_days}} days, charge will be Rs.{{q.Shipping_cost}}. {{q.Shipping_description}}.</label><br>
+        {% endif %}
+        {% endfor %}
+    <hr>
+    <br>
+    <button type="submit" class="registerbtn">Add to cart</button>&nbsp&nbsp&nbsp&nbsp
+    <button type="reset" class="registerbtn">Cancel</button>
+  </div>
+
+</form>
+</center>
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'view_cart' %}'" name='mybtn2'>View cart</button>&nbsp&nbsp&nbsp&nbsp
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'customer_home' %}'" name='mybtn2'>Home</button>
+</div>
+</body>
+
+</html>

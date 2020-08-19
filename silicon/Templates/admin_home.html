@@ -1,0 +1,136 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'msg.css' %}">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'studenthome.css' %}">
+
+</head>
+<body class=" pic" background="{% static 'home.jpg' %}">
+<div class="navbar">
+    <!--<button class="dropbtn">update profile<i class="fa fa-caret-down"></i></button>-->
+       <div class="dropdown">
+            <button class="dropbtn">Font style<i class="fa fa-caret-down"></i></button>
+            <div class="dropdown-content">
+              <a href="{% url 'nfs' %}">New font style</a>
+              <a href="{% url 'view_font_style' %}">View</a>
+            </div>
+      </div>
+      <div class="dropdown">
+            <button class="dropbtn">Category<i class="fa fa-caret-down"></i></button>
+            <div class="dropdown-content">
+              <a href="{% url 'new_category' %}">New category</a>
+              <a href="{% url 'view_category' %}">view</a>
+            </div>
+      </div>
+      <div class="dropdown">
+            <button class="dropbtn">Band<i class="fa fa-caret-down"></i></button>
+            <div class="dropdown-content">
+              <a href=""><b>Band size</b></a>
+              <a href="{% url 'new_band_size' %}">New size</a>
+              <a href="{% url 'view_band_size' %}">view</a>
+              <a href=""><b>Band style</b></a>
+              <a href="{% url 'nbs' %}">New band style</a>
+              <a href="{% url 'view_band_style' %}">View</a>
+            </div>
+      </div>
+      <div class="dropdown">
+            <button class="dropbtn">Clipart<i class="fa fa-caret-down"></i></button>
+            <div class="dropdown-content">
+              <a href="{% url 'new_clipart' %}">New clipart</a>
+              <a href="{% url 'view_clipart' %}">view</a>
+            </div>
+      </div>
+       <div class="dropdown">
+            <button class="dropbtn">Price<i class="fa fa-caret-down"></i></button>
+            <div class="dropdown-content">
+              <a href="{% url 'new_price' %}">Add price</a>
+              <a href="{% url 'view_price' %}">view</a>
+            </div>
+      </div>
+       <div class="dropdown">
+            <button class="dropbtn">Shipping<i class="fa fa-caret-down"></i></button>
+            <div class="dropdown-content">
+              <a href="{% url 'new_ship' %}">New</a>
+              <a href="{% url 'view_ship' %}">view</a>
+            </div>
+      </div>
+      <div class="dropdown">
+            <button class="dropbtn">Delivery details<i class="fa fa-caret-down"></i></button>
+            <div class="dropdown-content">
+              <a href="{% url 'new_delivery' %}">New</a>
+              <a href="{% url 'view_delivery' %}">view</a>
+            </div>
+      </div>
+       <div class="dropdown">
+            <button class="dropbtn">Product<i class="fa fa-caret-down"></i></button>
+            <div class="dropdown-content">
+                &nbsp&nbsp<b>Add product</b>
+                {% for t,g in d %}
+              <a href="{% url 'add_product' t %}">{{g}}</a>
+                {% endfor %}
+                &nbsp&nbsp<b>View product</b>
+                {% for t,g in k %}
+              <a href="{% url 'view_product' g %}">{{g}}</a>
+                {% endfor %}
+            </div>
+      </div>
+       <div class="dropdown">
+            <button class="dropbtn">Orders<i class="fa fa-caret-down"></i></button>
+            <div class="dropdown-content">
+              &nbsp&nbsp<b>Pre-orders</b>
+              <a href="{% url 'pre_orders' %}">View pre-orders</a>
+              <a href="{% url 'delete_pre_orders' %}">Delete pre-orders</a>
+              &nbsp&nbsp<b>Customized band orders</b>
+              <a href="{% url 'band_cust_orders' %}">View customized band orders</a>
+              <a href="{% url 'delete_band_cust_orders' %}">Delete customized band orders</a>
+              &nbsp&nbsp<b>Quotation</b>
+                <a href="{% url 'quott_req' %}"><b>Quotation requests</b></a>
+                <a href="{% url 'del_quot' %}"><b>Delete quotation requests</b></a>
+                &nbsp&nbsp&nbsp&nbsp<label><b>Quotation discounts</b></label>
+              {% for t,g in zx %}
+              <a href="{% url 'quott_disc' t %}">{{g}}</a>
+              {% endfor %}
+                &nbsp&nbsp&nbsp&nbsp<label><b>Delete Quotation discounts</b></label>
+              {% for t,g in kf %}
+              <a href="{% url 'delete_quot' t %}">{{g}}</a>
+              {% endfor %}
+            </div>
+      </div>
+      <a href="{% url 'customers' %}">Customers</a>
+
+
+     <div class="dropdown">
+            <button class="dropbtn">Queries<i class="fa fa-caret-down"></i></button>
+            <div class="dropdown-content">
+              <a href="{% url 'feedbak' %}">Feedbacks</a>
+              <a href="{% url 'faqs' %}">FAQ</a>
+              <a href="{% url 'del_faq' %}">Delete FAQ</a>
+            </div>
+      </div>
+
+     <a href="{% url 'g_m' %}">Guest messages</a>
+     <a href="{% url 'abb' %}">About</a>
+     <a href="{% url 'logout' %}">Logout</a>
+        <div class="dropdown-content">
+            <!--<a href="#">teacher</a>
+            <a href="#">Student</a>-->
+        </div>
+  </div>
+
+    <div>
+    <h1>ADMIN HOME</h1>
+</div>
+<div align="center" style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+
+</body>
+</html>

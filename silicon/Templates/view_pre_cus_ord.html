@@ -1,0 +1,132 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>View pre-orders</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">{{gf}} orders</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+
+<table  style="width:100%">
+	<tr>
+		<th>
+			Order_id
+		</th>
+		<th>
+			Category name
+		</th>
+		<th>
+			Product name
+		</th>
+		<th>
+			Price
+		</th>
+        <th>
+			Name
+		</th>
+        <th>
+			Email
+		</th>
+        <th>
+			Phone
+		</th>
+        <th>
+			State
+		</th>
+        <th>
+			City
+		</th>
+        <th>
+			Pincode
+		</th>
+        <th>
+			Address
+		</th>
+        <th>
+			Quantity
+		</th>
+        <th>
+			Order_date
+		</th>
+        <th>
+			Total_amount
+		</th>
+        <th>
+			Order_status
+		</th>
+	</tr>
+	{% for i in b %}
+	<tr>
+        <td>
+			{{i.id}}
+		</td>
+		<td>
+			{{i.Category_name}}
+		</td>
+        <td>
+			{{i.Product_name}}
+		</td>
+        <td>
+			{{i.Price}}
+		</td>
+        <td>
+			{{i.First_name}} {{i.Last_name}}
+		</td>
+        <td>
+			{{i.Email}}
+		</td>
+        <td>
+			{{i.Phone}}
+		</td>
+        <td>
+			{{i.State}}
+		</td>
+        <td>
+			{{i.City}}
+		</td>
+        <td>
+			{{i.Pincode}}
+		</td>
+        <td>
+			{{i.Address}}
+		</td>
+        <td>
+			{{i.Quantity}}
+		</td>
+        <td>
+			{{i.Order_date}}
+		</td>
+        <td>
+			{{i.Total_amount}}
+		</td>
+        <td>
+			{{i.Order_status}}
+		</td>
+	</tr>
+	{% endfor %}
+</table><br><br>
+
+<div align="center">
+	<button type="submit" onclick="location.href='{% url 'customer_home' %}'" name='mybtn2'>Home</button>
+</div>
+
+</body>
+</html>

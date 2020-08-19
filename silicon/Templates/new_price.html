@@ -1,0 +1,68 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Band price</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<center>
+
+<form method="post" action="{% url 'new_price' %}">
+    {% csrf_token %}
+    <div class="container">
+    <h1>Band price</h1>
+    <hr>
+         <label><b>Select band size (inch)</b></label><br><br>
+            <select name="bd_s">
+                <option value="" selected>Select</option>
+                {% for p in b_s %}
+                <option value="{{p}}">{{p}}</option>
+                {% endfor %}
+            </select><br><br>
+
+        <label><b>Select band style</b></label><br><br>
+            <select name="bd_st">
+                <option value="" selected>Select</option>
+                {% for i in b_st %}
+                <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+            </select><br><br>
+
+        <label><b>Minimum quantity</b></label><br><br>
+        <input type="number" placeholder="Enter minimum quantity" name="mi_q" required><br><br>
+
+        <label><b>Maximum quantity</b></label><br><br>
+        <input type="number" placeholder="Enter maximum quantity" name="ma_q" required><br><br>
+
+        <label><b>Discount percentage</b></label><br><br>
+        <input type="number" placeholder="Enter discount for above range" name="disc" value="0"><br><br>
+
+        <label><b>Unit band price</b></label><br><br>
+        <input type="number" placeholder="Enter price for above range in Rs" name="price" size="30" required><br><br>
+
+        <label><b>Status</b></label><br><br>
+            <select name="actt">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select><br><br>
+
+    <hr>
+
+
+    <button type="submit" class="registerbtn">Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button type="reset" class="registerbtn">Cancel</button>
+  </div>
+
+
+</form>
+</center>
+
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+
+</html>
